@@ -11,16 +11,19 @@ import RegUser from '../views/Users/Registro.vue';
 
 
 
+
 Vue.use(VueRouter)
 
 
 const routes = [{
-        path: '/',
+        path: '/home',
         name: 'Home',
         component: Home,
         meta: {
             auth: true
         }
+
+
 
     },
 
@@ -61,7 +64,7 @@ const routes = [{
         }
     },
     {
-        path: '/index',
+        path: '/',
         name: 'Index',
         component: Index
     },
@@ -70,7 +73,7 @@ const routes = [{
         path: '/registro',
         name: 'Registro',
         component: RegUser
-    }
+    },
 
 
 

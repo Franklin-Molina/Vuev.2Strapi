@@ -1,10 +1,6 @@
 <template>
 <div>
    <h1>Bienvenido! {{user.email}}</h1>
-    <h1>Bienvenido! {{user.username}}</h1>
-  
-   
-
  <button @click="salir"> Salir  </button>
 
  <div>
@@ -44,7 +40,7 @@ export default {
     salir (){
       localStorage.removeItem('token')
       localStorage.removeItem('user')
-      this.$router.push('/login')
+      this.$router.push('/')
     }
   },
    data() {
@@ -57,10 +53,10 @@ export default {
   mounted(){
     this.user= JSON.parse(localStorage.getItem('user'))
     //recuperar el token para la Auth
-    const tokenverificacion = localStorage.getItem('token')
+    //const tokenverificacion = 
     fetch('http://localhost:1337/imagenes/me/',{
       headers: {
-       'Authorization': 'Bearer ' + tokenverificacion
+       'Authorization': 'Bearer ' +localStorage.getItem('token')
          
       }
     })

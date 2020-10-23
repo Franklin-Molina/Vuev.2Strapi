@@ -50,8 +50,8 @@
     </div>
 
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-6 col-lg-4" v-for="items in imagenes" :key="items.id"  >
-        <Imagen :items="items" />
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4" v-for="items in galeria" :key="items.id"  >
+        <Galeria :items="items" />
       </div>
     </div>
   </div> 
@@ -62,17 +62,17 @@
 
 </template>
 <script>
-import Imagen from "../components/Prueba.vue";
+import Galeria from '@/components/Galeria.vue'
 import axios from "axios";
 
 export default {
   name: "Home",
   components: { 
-    Imagen 
+    Galeria 
     },
   data() {
     return {
-      imagenes: [],
+      galeria: [],
        user: {}
     };
   },
@@ -86,17 +86,15 @@ mounted() {
 
       traerimagen(){
 
-        localStorage.removeItem('user')    
-        const tokenverificacion = localStorage.getItem('token')
         axios.get('http://localhost:1337/imagenes/' ,{
-
-          headers: {
-          'Authorization': 'Bearer ' + tokenverificacion
-        }
+headers: {
+            'Content-Type': 'application/json',
+          },
+       
 
         })
         .then((response)=>  {
-          this.imagenes = response.data
+          this.galeria = response.data
           console.log(response)
         })
       }
