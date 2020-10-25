@@ -1,16 +1,20 @@
 <template >
 
-<div>
-  <div>
-  <b-navbar toggleable="md" type="dark" variant="info">
-    <b-navbar-brand href="#">NavBar</b-navbar-brand>
+<div class="index ">
+ 
+      <div class="container-flex ">
+
+  <b-navbar  toggleable="md" type="dark" class="Nav"  >
+    <b-navbar-brand href="/">Inicio</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item href="#">Link</b-nav-item>
-        <b-nav-item href="#" disabled>Disabled</b-nav-item>
+          <b-nav-item href="/login">Login</b-nav-item>
+        <b-nav-item href="/registro">Registro</b-nav-item>
+        <b-nav-item href="/home" >Mi Perfil</b-nav-item>
+         <b-nav-item href="#" >Categorias</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -18,32 +22,65 @@
         <b-nav-form>
           <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-        </b-nav-form>
-
-        <b-nav-item-dropdown text="Lang" right>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#">FA</b-dropdown-item>
-        </b-nav-item-dropdown>
-
-        <b-nav-item-dropdown right>
-          <!-- Using 'button-content' slot -->
-          <template #button-content>
-            <em>User</em>
-          </template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-        </b-nav-item-dropdown>
+        </b-nav-form> 
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </div>
 
+    <div class="container-flex">
+    <b-carousel
+      id="carousel-1"
+      v-model="slide"
+      :interval="4000"
+      controls
+      indicators
+      background="#ababab"
+      img-width="1024"
+      img-height="480"
+      
+      style="text-shadow: 1px 1px 2px #333; "
+      @sliding-start="onSlideStart"
+      @sliding-end="onSlideEnd"
+    >
+      <!-- Text slides with image -->
+      <b-carousel-slide
+        caption="First slide"
+        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+        img-src="https://picsum.photos/1024/480/?image=52"
+        style="max-height: 400px;"
+      ></b-carousel-slide>
+
+      <!-- Slides with custom text -->
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54" style="max-height: 400px;">
+        <h1>Hello world!</h1>
+      </b-carousel-slide>
+
+      <!-- Slides with image only -->
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58" style="max-height: 400px;"></b-carousel-slide>
+
+      <!-- Slides with img slot -->
+      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
+      <b-carousel-slide>
+        <template #img>
+          <img
+            class="d-block img-fluid w-100"
+            width="1024"
+            height="480"
+            src="https://picsum.photos/1024/480/?image=55"
+            style="max-height: 400px;"
+            alt="image slot"
+          >
+        </template>
+      </b-carousel-slide>
+
+     
+    </b-carousel>
+
+  </div>
 
 
-
-
+ 
   <div class="container mt-4">
     <div class="row">
       <div class="col-12"></div>
@@ -55,6 +92,10 @@
       </div>
     </div>
   </div> 
+    
+  
+  
+
 
 </div>
   
@@ -73,7 +114,10 @@ export default {
   data() {
     return {
       galeria: [],
-       user: {}
+       user: {},
+        slide: 0,
+        sliding: null,
+       
     };
   },
 mounted() {
@@ -82,7 +126,12 @@ mounted() {
   },
 
     methods: {
-      
+       onSlideStart(slide) {
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+        this.sliding = false
+      },
 
       traerimagen(){
 
@@ -102,38 +151,26 @@ headers: {
 
       
     }
-   
-  /*
-
-   axios
-        .get("http://localhost:1337/tags", {
-          params,
-        })
-        .then((response) => {
-          this.tags = response.data;
-        });
-  mounted() {
-
-
-    fetch("http://localhost:1337/imagenes/")
-
-      .then((res) => res.json())
-
-      .then((data) => {
-       
-        this.imagenes = data;
-         console.log(data);
-      });
-  },
-*/
-
   
 };
 
 
 
 </script>
+
+
+
+
 <style >
+
+.Nav{
+  background: rgb(39, 206, 218);
+  width: auto;
+  
+}
+
+
+
 #col_border {
   text-decoration: none;
 }
@@ -147,7 +184,7 @@ h1 {
 }
 
 .btnhome {
-    font-family: Lato, sans-serif;
+  font-family: Lato, sans-serif;
   text-decoration: none;
 width: 1550px;
   border: 5px solid #2c3e50;

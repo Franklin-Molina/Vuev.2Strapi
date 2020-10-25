@@ -7,6 +7,7 @@ import CreateTag from '../views/Tags/CreateTag.vue';
 import EditTag from '../views/Tags/EditTag.vue';
 import Index from '../views/Index.vue';
 import RegUser from '../views/Users/Registro.vue';
+import Prueba from '../views/Prueba.vue'
 
 
 
@@ -74,7 +75,12 @@ const routes = [{
         name: 'Registro',
         component: RegUser
     },
+    {
 
+        path: '/prueba',
+        name: 'Prueba',
+        component: Prueba
+    },
 
 
 

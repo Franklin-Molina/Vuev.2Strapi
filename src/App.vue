@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <nav>
+
+
+
+
+
+    <!--nav>
       <a href="/home">Perfil</a>
       <a href="/tag">Tags</a>
       <a href="/registro">Registro</a>
       <a href="/login">Login</a>
       <a href="/">Index</a>
       
-    </nav>
+    </nav-->
     <router-view />
   </div>
 </template>
